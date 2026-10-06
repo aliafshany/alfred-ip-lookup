@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.aliafshany.ip-lookup</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1002</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string>Copy</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Open on check-host</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Open on ipinfo.io</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1004</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Ali Afshanisoumeeh</string>
+	<key>description</key>
+	<string>Country and ISP for an IP from check-host, ipinfo, ip-api, ipwho.is, ipapi.is and RDAP</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>IP Lookup</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>ip</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Looking up…</string>
+				<key>script</key>
+				<string>/usr/bin/python3 iplookup.py "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Country and ISP from 9 sources</string>
+				<key>title</key>
+				<string>IP Lookup</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<true/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1002</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<true/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>IP Lookup</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1004</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Keyword: ip
+
+ip 1.1.1.1    look up an IP, a URL, or a hostname
+ip            your public IP; if the clipboard holds an IP, Tab selects it
+
+Return copies the row. Command-Return opens check-host. Option-Return opens ipinfo.io.
+
+Sources: check-host (five databases), ip-api.com, ipapi.is, ipwho.is, ipinfo.io, and the RDAP registry. Rows stream in as each source answers. A clean result is cached for 6 hours.</string>
+	<key>uidata</key>
+	<dict>
+		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>120</integer>
+		</dict>
+		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1002</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>220</integer>
+		</dict>
+		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1004</key>
+		<dict>
+			<key>note</key>
+			<string>Look up the selected text</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>240</integer>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>variables</key>
+	<dict/>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/aliafshany/alfred-ip-lookup</string>
+</dict>
+</plist>
