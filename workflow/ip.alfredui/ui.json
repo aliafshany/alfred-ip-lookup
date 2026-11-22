@@ -1,0 +1,244 @@
+{
+ "bundleid": "com.aliafshany.ip-lookup.ui",
+ "log": {
+  "level": "info",
+  "internal": true
+ },
+ "variablesconfig": {
+  "input_query": {
+   "src": "args[0]"
+  }
+ },
+ "colours": {
+  "card": "#8080801A",
+  "field": "#8080802E"
+ },
+ "window": {
+  "title": "IP Lookup",
+  "movablebybackground": true,
+  "size": {
+   "width": 720,
+   "height": 480
+  },
+  "padding": 0,
+  "root": {
+   "id": "root",
+   "type": "view",
+   "layout": "flex",
+   "padding": 14,
+   "background": "windowBackgroundColor",
+   "rows": 4,
+   "cols": 1,
+   "spacing": 10,
+   "events": [
+    {
+     "triggers": "launched",
+     "action": {
+      "type": "script",
+      "src": "ipui",
+      "args": [
+       "full",
+       "{var:input_query}",
+       "launch"
+      ],
+      "async": true
+     }
+    }
+   ],
+   "shortcuts": [
+    {
+     "shortcut": "⌘↩",
+     "action": {
+      "type": "json",
+      "src": {
+       "finish": {
+        "args": "{var:chk}",
+        "variables": {
+         "action": "open"
+        }
+       }
+      }
+     }
+    },
+    {
+     "shortcut": "⌥↩",
+     "action": {
+      "type": "json",
+      "src": {
+       "finish": {
+        "args": "{var:ipi}",
+        "variables": {
+         "action": "open"
+        }
+       }
+      }
+     }
+    },
+    {
+     "shortcut": "⌘1",
+     "action": {
+      "type": "json",
+      "src": {
+       "finish": {
+        "args": "{value:list.selected.arg}",
+        "variables": {
+         "action": "copy"
+        }
+       }
+      }
+     }
+    },
+    {
+     "shortcut": "↓",
+     "action": {
+      "type": "function",
+      "src": "list",
+      "args": "selectnext"
+     }
+    },
+    {
+     "shortcut": "↑",
+     "action": {
+      "type": "function",
+      "src": "list",
+      "args": "selectprevious"
+     }
+    }
+   ],
+   "components": [
+    {
+     "constraints": {
+      "grid": {
+       "row": 0,
+       "col": 0
+      }
+     },
+     "id": "in",
+     "type": "textfield",
+     "text": "",
+     "placeholder": "IP address or hostname  ·  empty = your own public IP",
+     "focus": true,
+     "font": {
+      "size": 18
+     },
+     "background": "field",
+     "bordered": false,
+     "focusring": false,
+     "textinsets": {
+      "horizontal": 10,
+      "vertical": 8
+     },
+     "events": [
+      {
+       "triggers": "changed",
+       "action": {
+        "type": "script",
+        "src": "ipui",
+        "args": [
+         "full",
+         "{value:self.text}"
+        ],
+        "async": true
+       }
+      },
+      {
+       "triggers": "actioned",
+       "action": {
+        "type": "json",
+        "src": {
+         "finish": {
+          "args": "{var:arg}",
+          "variables": {
+           "action": "copy"
+          }
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "constraints": {
+      "grid": {
+       "row": 1,
+       "col": 0
+      }
+     },
+     "type": "view",
+     "layout": "inline",
+     "direction": "vertical",
+     "padding": 14,
+     "spacing": 4,
+     "background": "card",
+     "cornerradius": 10,
+     "components": [
+      {
+       "constraints": {
+        "size": {
+         "width": 660
+        }
+       },
+       "id": "h_title",
+       "type": "label",
+       "text": "Looking up…",
+       "selectable": true,
+       "font": {
+        "size": 24,
+        "weight": "semibold"
+       },
+       "linebreak": "truncatetail"
+      },
+      {
+       "constraints": {
+        "size": {
+         "width": 660
+        }
+       },
+       "id": "h_sub",
+       "type": "label",
+       "text": "",
+       "selectable": true,
+       "colour": "secondaryLabelColor",
+       "font": {
+        "size": 13
+       },
+       "linebreak": "truncatetail"
+      }
+     ]
+    },
+    {
+     "constraints": {
+      "grid": {
+       "row": 2,
+       "col": 0,
+       "rowweight": 1.0
+      }
+     },
+     "type": "view",
+     "layout": "border",
+     "padding": 6,
+     "background": "card",
+     "cornerradius": 10,
+     "components": [
+      "{file:components/list.json}"
+     ]
+    },
+    {
+     "constraints": {
+      "grid": {
+       "row": 3,
+       "col": 0
+      }
+     },
+     "type": "label",
+     "text": "↩ copy summary  ·  ⌘1 copy selected row  ·  ⌘↩ check-host  ·  ⌥↩ ipinfo  ·  ⎋ close",
+     "colour": "secondaryLabelColor",
+     "font": {
+      "size": 11
+     },
+     "textalign": "right"
+    }
+   ]
+  }
+ }
+}

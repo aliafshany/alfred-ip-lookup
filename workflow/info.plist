@@ -8,35 +8,28 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
-		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</key>
+		<key>0204C192-133C-4C3F-B3D3-FDDB88CBA403</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1002</string>
+				<string>996B325F-BF89-47E2-B232-AEE9B57DE5BA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
-				<string>Copy</string>
+				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
+		</array>
+		<key>2D7D875C-72ED-4372-8E03-A23AFAE5C56C</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</string>
+				<string>0204C192-133C-4C3F-B3D3-FDDB88CBA403</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>0</integer>
 				<key>modifiersubtext</key>
-				<string>Open on check-host</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>Open on ipinfo.io</string>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -45,7 +38,58 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</string>
+				<string>0204C192-133C-4C3F-B3D3-FDDB88CBA403</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5FD77317-FE07-418F-B190-6746A772D3C9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0204C192-133C-4C3F-B3D3-FDDB88CBA403</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>996B325F-BF89-47E2-B232-AEE9B57DE5BA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D7A6D44D-8CF1-4A8C-875E-5D22DB1173A6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D7A6D44D-8CF1-4A8C-875E-5D22DB1173A6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1003</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>A40E56D1-5415-4081-96B9-BEE584AB71F7</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1002</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -65,55 +109,6 @@
 	<string>IP Lookup</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>ip</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Looking up…</string>
-				<key>script</key>
-				<string>/usr/bin/python3 iplookup.py "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Country and ISP from 9 sources</string>
-				<key>title</key>
-				<string>IP Lookup</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -175,6 +170,104 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>ip</string>
+				<key>subtext</key>
+				<string>Country and ISP from 9 sources · empty = your own IP</string>
+				<key>text</key>
+				<string>IP Lookup</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2D7D875C-72ED-4372-8E03-A23AFAE5C56C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>panel</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>5FD77317-FE07-418F-B190-6746A772D3C9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>launchmode</key>
+				<integer>0</integer>
+				<key>path</key>
+				<string>ip.alfredui</string>
+				<key>stackview</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.userinterface.alfredui</string>
+			<key>uid</key>
+			<string>0204C192-133C-4C3F-B3D3-FDDB88CBA403</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.hidealfred</string>
+			<key>uid</key>
+			<string>996B325F-BF89-47E2-B232-AEE9B57DE5BA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>open</string>
+						<key>outputlabel</key>
+						<string>Open</string>
+						<key>uid</key>
+						<string>A40E56D1-5415-4081-96B9-BEE584AB71F7</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Copy</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>D7A6D44D-8CF1-4A8C-875E-5D22DB1173A6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Keyword: ip
@@ -187,12 +280,19 @@ Return copies the row. Command-Return opens check-host. Option-Return opens ipin
 Sources: check-host (five databases), ip-api.com, ipapi.is, ipwho.is, ipinfo.io, and the RDAP registry. Rows stream in as each source answers. A clean result is cached for 6 hours.</string>
 	<key>uidata</key>
 	<dict>
-		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1001</key>
+		<key>0204C192-133C-4C3F-B3D3-FDDB88CBA403</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>120</integer>
+			<integer>80</integer>
+		</dict>
+		<key>2D7D875C-72ED-4372-8E03-A23AFAE5C56C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 		<key>4F8A1C20-7B3E-4D5A-9C11-0A6E2F8B1002</key>
 		<dict>
@@ -217,13 +317,34 @@ Sources: check-host (five databases), ip-api.com, ipapi.is, ipwho.is, ipinfo.io,
 			<key>ypos</key>
 			<integer>240</integer>
 		</dict>
+		<key>5FD77317-FE07-418F-B190-6746A772D3C9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>140</integer>
+		</dict>
+		<key>996B325F-BF89-47E2-B232-AEE9B57DE5BA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>80</integer>
+		</dict>
+		<key>D7A6D44D-8CF1-4A8C-875E-5D22DB1173A6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>80</integer>
+		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>variables</key>
 	<dict/>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>2.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/aliafshany/alfred-ip-lookup</string>
 </dict>

@@ -1,8 +1,10 @@
 # IP Lookup
 
-Alfred 5 workflow that shows the country and ISP of an IP address, checked against nine geolocation sources at once.
+Alfred 6 workflow that shows the country and ISP of an IP address, checked against nine geolocation sources at once, in a native Alfred UI panel.
 
-IP databases often disagree, and some are months out of date. This workflow asks them all in parallel and puts the consensus on top. Each distinct answer gets its own row, with the sources that gave it.
+> **Version 2 needs Alfred 6.** It is built on Alfred UI, which Alfred 5 doesn't have. On Alfred 5, use [v1.0.0](https://github.com/aliafshany/alfred-ip-lookup/releases/tag/v1.0.0).
+
+IP databases often disagree, and some are months out of date. This workflow asks them all in parallel and puts the consensus on a summary card. Each distinct answer gets its own row below it, with the sources that gave it.
 
 ```
 🇺🇸 United States · Google LLC     8.8.8.8 · AS15169 · all 9 sources agree
@@ -21,15 +23,18 @@ IP databases often disagree, and some are months out of date. This workflow asks
 | `ip example.com` | resolves the host, then looks up its address (VPN fake-IP answers in 198.18.0.0/15 are re-resolved over Google DNS-over-HTTPS) |
 | `ip 1.2.3.4:443`, `ip https://1.2.3.4/path`, `ip [2606:4700::1111]:443` | the address is pulled out of ports, URLs and brackets |
 | `ip ۸.۸.۸.۸` | Persian and Arabic digits work |
-| `ip` | your own public IP; if the clipboard holds an IP, a row offers it (⇥ to use it) |
+| `ip` | your own public IP; if the clipboard holds an IP, a row offers it |
 
-- ↩ copies the row as text, for example `8.8.8.8 — United States (US), Mountain View — Google LLC (AS15169)`.
-- ⌘↩ opens the address on check-host.net. ⌥↩ opens it on ipinfo.io. ⇧ previews check-host in Quick Look.
+The panel has a box at the top: type or paste another address there and it looks that one up.
+
+- ↩ copies the summary as text, for example `8.8.8.8 — United States (US) — Google LLC (AS15169)`.
+- ↑↓ select a row below; ⌘1 copies the selected row.
+- ⌘↩ opens the address on check-host.net. ⌥↩ opens it on ipinfo.io.
 - Select text anywhere and use the Universal Action **IP Lookup**.
 
 ## What the rows mean
 
-- **Top row:** the country and ISP most sources agree on, with the vote count. A ⚠️ means the sources split on the country.
+- **Summary card:** the country and ISP most sources agree on, with the vote count. A ⚠️ means the sources split on the country.
 - **📍 rows:** one per distinct answer. Sources that agree share a row, and the row shows only what differs from the top line (usually the city). A row whose country disagrees is marked ⚠️ and names that country. A source that adds nothing new (same country and ISP, no city) is counted in the vote but gets no row of its own.
 - **📋 row:** who the address block is *registered* to, from the regional registry (RIPE, ARIN, APNIC, LACNIC, AFRINIC) over RDAP. This is the registration, not the location, so it is not counted in the vote.
 - **✗ rows:** a source that failed or timed out.
@@ -49,7 +54,7 @@ No API keys are needed. All sources are free tiers with rate limits, which is pl
 
 ## Speed
 
-All sources are queried at once in a background process, and rows stream into Alfred as each one answers. The fastest source usually lands in about a second and the rest within 2–5 seconds. Each refresh of the list takes under 100 ms.
+All sources are queried at once in a background process. The panel fills in when they have all answered, usually within 1.5–5 seconds (at most about 9). Alfred UI runs one script per event, so results don't stream in row by row the way the v1 list did.
 
 Results are cached for 6 hours (5 minutes if any source failed), so a repeat lookup is instant. The IANA registry map is cached for 30 days.
 
@@ -57,7 +62,7 @@ Results are cached for 6 hours (5 minutes if any source failed), so a repeat loo
 
 Download `IP-Lookup.alfredworkflow` from [Releases](https://github.com/aliafshany/alfred-ip-lookup/releases) and double-click it.
 
-Requirements: Alfred 5 with the Powerpack, and `/usr/bin/python3`. If macOS asks you to install the Command Line Tools the first time, accept, or run `xcode-select --install`. No other dependencies: the script uses only the Python standard library and `/usr/bin/curl`.
+Requirements: Alfred 6 with the Powerpack, and `/usr/bin/python3`. If macOS asks you to install the Command Line Tools the first time, accept, or run `xcode-select --install`. No other dependencies: the script uses only the Python standard library and `/usr/bin/curl`.
 
 ## Privacy
 

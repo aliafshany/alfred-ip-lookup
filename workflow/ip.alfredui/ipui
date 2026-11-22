@@ -1,0 +1,80 @@
+#!/usr/bin/python3
+"""IP Lookup panel backend (Alfred 6, Alfred UI).
+
+argv: phase, query, ["launch"]
+  full   wait until every source has answered (or ~9 s), then show everything
+A run stops as soon as a newer query is typed. Alfred UI keeps only one event per trigger,
+so there is no quick-then-full streaming like the old Script Filter's `rerun`. Rows come from
+iplookup.py script_filter(), the engine the old Script Filter streamed with `rerun`.
+"""
+import json
+import os
+import sys
+import time
+
+sys.dont_write_bytecode = True  # keep __pycache__ out of the workflow folder
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(HERE))
+os.chdir(os.path.dirname(HERE))  # iplookup spawns its fetcher relative to the workflow folder
+import iplookup  # noqa: E402
+
+STAMP = os.path.join(iplookup.cache_root(), "panel-query")
+LIMIT = {"quick": 1.3, "full": 9.0}
+
+
+def latest():
+    try:
+        with open(STAMP, encoding="utf-8") as f:
+            return f.read()
+    except OSError:
+        return None
+
+
+def main():
+    phase = sys.argv[1] if len(sys.argv) > 1 else "full"
+    query = sys.argv[2] if len(sys.argv) > 2 else ""
+    if query == "(null)":  # what Alfred passes for an empty argument
+        query = ""
+    os.makedirs(os.path.dirname(STAMP), exist_ok=True)
+    with open(STAMP, "w", encoding="utf-8") as f:
+        f.write(query)
+    start = time.time()
+    while True:
+        payload = iplookup.script_filter(query)
+        if "rerun" not in payload or time.time() - start >= LIMIT.get(phase, 9.0):
+            break
+        time.sleep(0.25)
+        if latest() != query:
+            print("{}")
+            return
+    if latest() != query:
+        print("{}")
+        return
+    items = payload.get("items", [])
+    head = items[0] if items and items[0].get("valid") else None
+    rest = items[1:] if head else items
+    ids, variables = {}, {"arg": "", "chk": "", "ipi": ""}
+    if head:
+        mods = head.get("mods") or {}
+        ids["h_title"] = {"text": head["title"]}
+        ids["h_sub"] = {"text": head.get("subtitle", "")}
+        variables = {"arg": head.get("arg", ""), "chk": (mods.get("cmd") or {}).get("arg", ""),
+                     "ipi": (mods.get("alt") or {}).get("arg", "")}
+    else:
+        ids["h_title"] = {"text": rest[0]["title"] if rest else "Looking up…"}
+        ids["h_sub"] = {"text": rest[0].get("subtitle", "") if rest else ""}
+        rest = rest[1:]
+    with open(os.path.join(HERE, "components", "list.json")) as f:
+        view = json.load(f)
+    view["data"]["src"] = [{"title.text": it.get("title", ""), "sub.text": it.get("subtitle", ""),
+                            "title.colour": "labelColor" if it.get("valid") else "secondaryLabelColor",
+                            "arg": it.get("arg", "")} for it in rest]
+    out = {"update": {"ids": ids}, "replace": {"ids": {"list": view}}, "variables": variables}
+    if len(sys.argv) > 3:  # launch: put the argument in the box
+        ids["in"] = {"text": query}
+        out["functions"] = {"ids": {"in": "caretend"}}
+    print(json.dumps(out, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
